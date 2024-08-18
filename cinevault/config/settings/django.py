@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "users",
+    "movies",
+    "movie_collections",
 ]
 
 MIDDLEWARE = [
