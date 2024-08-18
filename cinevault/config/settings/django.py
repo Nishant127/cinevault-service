@@ -135,3 +135,7 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
+
+MOVIE_API_USERNAME = env("MOVIE_API_USERNAME")
+MOVIE_API_PASSWORD = env("MOVIE_API_PASSWORD")
+MOVIE_API_URL = "https://demo.credy.in/api/v1/maya/movies/"
