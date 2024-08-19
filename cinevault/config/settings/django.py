@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os, environ, sys
+from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 WSGI_APPLICATION = "cinevault.config.wsgi.application"
@@ -146,6 +147,14 @@ CACHES = {
         },
     }
 }
+
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+}
+
 
 MOVIE_API_USERNAME = env("MOVIE_API_USERNAME")
 MOVIE_API_PASSWORD = env("MOVIE_API_PASSWORD")
