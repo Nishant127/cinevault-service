@@ -7,11 +7,18 @@ import uuid
 
 
 class MovieCollection(TimeStampedModel):
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="collections", verbose_name=_("User"))
+    user = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name="collections",
+        verbose_name=_("User"),
+    )
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     title = models.CharField(_("Title"), max_length=255)
     description = models.TextField(_("Description"))
-    movies = models.ManyToManyField(Movie, related_name="collections", verbose_name=_("Movies"))
+    movies = models.ManyToManyField(
+        Movie, related_name="collections", verbose_name=_("Movies")
+    )
 
     def __str__(self):
-        return f"{self.user}-{self.title}"
+        return f"{self.user}-{self.title}-{self.uuid}"
