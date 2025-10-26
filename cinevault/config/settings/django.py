@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os, environ, sys
+import os
+import sys
+import environ
 from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -58,8 +60,8 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "cinevault.common.middleware.RequestCounterMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware"
+    # "cinevault.common.middleware.RequestCounterMiddleware",
 ]
 
 ROOT_URLCONF = "cinevault.config.urls"
@@ -138,15 +140,15 @@ REST_FRAMEWORK = {
     ),
 }
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         },
+#     }
+# }
 
 
 SIMPLE_JWT = {
@@ -156,6 +158,5 @@ SIMPLE_JWT = {
 }
 
 
-MOVIE_API_USERNAME = env("MOVIE_API_USERNAME")
-MOVIE_API_PASSWORD = env("MOVIE_API_PASSWORD")
-MOVIE_API_URL = "https://demo.credy.in/api/v1/maya/movies/"
+# OMDB API Configuration
+OMDB_API_KEY = env("OMDB_API_KEY")
