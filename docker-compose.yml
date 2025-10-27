@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://cinevault:cinevault@db:5432/cinevault
+      - DEBUG=1
+      - SECRET_KEY=9kal)6*g8a0uduhh5mm#ndn6d%h^r@@n!@%xb=d8a#i(fkjp6$
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  # PostgreSQL database
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_DB=cinevault
+      - POSTGRES_USER=cinevault
+      - POSTGRES_PASSWORD=cinevault
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cinevault"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
